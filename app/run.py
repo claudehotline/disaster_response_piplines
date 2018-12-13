@@ -63,7 +63,13 @@ def index():
                     'title': "Genre"
                 }
             }
-        }
+        },
+
+        {},
+
+        {},
+
+        {}
     ]
     
     # encode plotly graphs in JSON
@@ -71,7 +77,7 @@ def index():
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
     
     # render web page with plotly graphs
-    return render_template('master.html', ids=ids, graphJSON=graphJSON)
+    return render_template('master.html', ids=ids, graphJSON=graphJSON, num_figs=len(graphs))
 
 
 # web page that handles user query and displays model results
