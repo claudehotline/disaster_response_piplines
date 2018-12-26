@@ -66,10 +66,6 @@ def index():
         },
 
         {},
-
-        {},
-
-        {}
     ]
     
     # encode plotly graphs in JSON
