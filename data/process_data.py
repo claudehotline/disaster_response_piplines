@@ -4,6 +4,20 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
+    '''
+    Load two CSV files from messages_filepath and categories_filepath,
+    and create a pandas DataFrame object for each CSV file, finally
+    merge the two DataFrame objects on rows and return the merged 
+    DataFrame object.
+
+    input:
+        messages_filepath: The path of the messages CSV file.
+        categories_filepath: The path of the categories CSV file.
+
+    return:
+        df: a pandas DataFrame object that contains the content of 
+            the merge of the input files.
+    '''
     # load messages dataset
     messages = pd.read_csv(messages_filepath)
     # load categories dataset
@@ -14,6 +28,18 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    '''
+    Clean the input pandas DataFrame in the following steps:
+        1. Split categories column into 36 individual category columns;
+        2. Convert category values to just numbers 0 or 1;
+        3. Remove any duplicate rows.
+
+    input:
+        df: A pandas DataFrame object.
+
+    return：
+        df: The cleaned pandas DataFrame object.
+    '''
     # Split categories into separate category columns.
     # create a dataframe of the 36 individual category columns
     categories = df.categories.str.split(';', expand=True)
@@ -41,6 +67,13 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    '''
+    Save a pandas DataFrame into a sqlite database.
+
+    input:
+        df: The pandas DataFrame object to be saved.
+        database_filename: the name of the sqlite database file.
+    '''
     engine = create_engine('sqlite:///{}.db'.format(database_filename))
     df.to_sql('ResponseCategory', engine, index=False)
 
