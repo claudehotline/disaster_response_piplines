@@ -20,6 +20,18 @@ nltk.download(['punkt', 'wordnet'])
 
 
 def load_data(database_filepath):
+    '''
+    Load the cleaned dataset from the sqlite database specified
+    by database_filepath.
+
+    input:
+        database_filepath: The path of the sqlite database file.
+
+    return:
+        X: The message column of the dataset.
+        Y: All categories columns of the dataset.
+        categories: the column names of all categories columns.
+    '''
     # load data from database
     engine = create_engine('sqlite:///DisasterResponse.db')
     df = pd.read_sql_table('ResponseCategory', engine)
@@ -32,6 +44,15 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    '''
+    Convert given text into tokens.
+
+    input:
+        text: The text to be tokenized.
+
+    return:
+        clean_tokens: the tokens of the input text.
+    '''
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -44,6 +65,13 @@ def tokenize(text):
 
 
 def build_model():
+    '''
+    Construct a scikit-learn pipeline and use GridSearchCV method to
+    tune the pipelines hyperparameters.
+
+    reutrn:
+        model: The scikit-learn pipeline model.
+    '''
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -65,11 +93,27 @@ def build_model():
     return model
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    '''
+    Use model to perform predictions
+
+    input:
+        model: Model using to perform predictions.
+        X_test: Test messages.
+        Y_test: True values of the categories for corresponding messages.
+        category_names: the name of each category
+    '''
     Y_pred = model.predict(X_test)
     print(classification_report(Y_test, Y_pred, target_names= category_names))
 
 
 def save_model(model, model_filepath):
+    '''
+    Save the model in a pickle file.
+
+    input:
+        model: Model to be saved.
+        model_filepath: the file path of the saved model.
+    '''
     with open(model_filepath, 'wb') as f:
         pickle.dump(model, f)
 

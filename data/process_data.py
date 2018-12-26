@@ -67,6 +67,13 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    '''
+    Save a pandas DataFrame into a sqlite database.
+
+    input:
+        df: The pandas DataFrame object to be saved.
+        database_filename: the name of the sqlite database file.
+    '''
     engine = create_engine('sqlite:///{}.db'.format(database_filename))
     df.to_sql('ResponseCategory', engine, index=False)
 
