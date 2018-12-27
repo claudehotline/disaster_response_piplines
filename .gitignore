@@ -1,5 +1,5 @@
 .vscode
-models/classifier.pkl
+models/classifier*.pkl
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 
 
 application = Flask(__name__)
-'''
+
 def tokenize(text):
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
@@ -24,14 +24,13 @@ def tokenize(text):
         clean_tokens.append(clean_tok)
 
     return clean_tokens
-'''
 
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('ResponseCategory', engine)
 
 # load model
-#model = joblib.load("models/classifier2.pkl")
+model = joblib.load("models/classifier.pkl")
 
 # index webpage displays cool visuals and receives user input text for model
 @application.route('/')
