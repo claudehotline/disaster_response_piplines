@@ -79,12 +79,12 @@ def index():
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Distribution of Categories',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Categories"
                 }
             }
         }
@@ -99,7 +99,7 @@ def index():
 
 
 # web page that handles user query and displays model results
-'''
+
 @application.route('/go')
 def go():
     # save user input in query
@@ -115,11 +115,11 @@ def go():
         query=query,
         classification_result=classification_results
     )
-'''
 
-#def main():
-#    app.run(host='0.0.0.0', port=3001, debug=True)
+
+def main():
+    app.run(host='0.0.0.0', port=3001, debug=True)
 
 
 if __name__ == '__main__':
-    application.run()
+    main()
