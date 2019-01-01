@@ -33,7 +33,7 @@ def load_data(database_filepath):
         categories: the column names of all categories columns.
     '''
     # load data from database
-    engine = create_engine('sqlite:///data/DisasterResponse.db')
+    engine = create_engine('sqlite:///{}'.format(database_filepath))
     df = pd.read_sql_table('ResponseCategory', engine)
     df = df.drop(df.loc[df['related'] > 1, :].index, axis=0)
     categories = df.columns[-36:]
