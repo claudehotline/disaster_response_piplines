@@ -86,7 +86,7 @@ def index():
             }
         }
     ]
-    
+
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
@@ -115,7 +115,7 @@ def go():
 
 
 def main():
-    app.run(host='0.0.0.0', port=3001, debug=True)
+    application.run(host='0.0.0.0', port=3001, debug=True)
 
 
 if __name__ == '__main__':
