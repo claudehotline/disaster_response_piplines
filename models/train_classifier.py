@@ -33,7 +33,7 @@ def load_data(database_filepath):
         categories: the column names of all categories columns.
     '''
     # load data from database
-    engine = create_engine('sqlite:///DisasterResponse.db')
+    engine = create_engine('sqlite:///data/DisasterResponse.db')
     df = pd.read_sql_table('ResponseCategory', engine)
     df = df.drop(df.loc[df['related'] > 1, :].index, axis=0)
     categories = df.columns[-36:]
@@ -88,7 +88,7 @@ def build_model():
     }
 
     model = GridSearchCV(pipeline, param_grid=parameters,
-                      verbose=200, return_train_score=False, n_jobs=20)
+                      verbose=2, return_train_score=False, n_jobs=10)
 
     return model
 
