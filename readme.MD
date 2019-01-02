@@ -1,3 +1,4 @@
+**Table of contents**
 - [Introduction](#introduction)
 - [Training dataset](#training-dataset)
 - [Installation](#installation)
@@ -12,7 +13,7 @@
 This project builds a Web applicaiton to classify disaster messages. In the project, ETL pipeline techniques are used to clean the dataset, and ML pipeline techniques are used to train a machine learning model which will perform message classification for the Web application. 
 
 # Training dataset
-The training dataset can be founde at [Figure Eight](https://www.figure-eight.com/).
+The training dataset can be found at [Figure Eight](https://www.figure-eight.com/).
 
 # Installation
 In order to run the code of this project, you need to install the followding python packages, and the version of each packages can be found at the `requirements.txt` file:
